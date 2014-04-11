@@ -21,11 +21,6 @@
 # define DEFAULT_BS (42)
 
 /**
- * Default value for WindowMode.
- */
-# define DEFAULT_WINDOW_MODE (false)
-
-/**
  * \class Args
  * \brief Defines program arguments and handle them.
  */

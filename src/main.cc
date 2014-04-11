@@ -1,11 +1,17 @@
 #include <iostream>
 #include "Args.hh"
+#include "TVL0DecompositionMinimizer.hh"
+#include "Rayleigh2Vars.hh"
+
+typedef TVL0DecompositionMinimizer<Rayleigh2Vars<unsigned> > Minimizer;
 
 int main(int argc, char* argv[])
 {
 	Args args(argc, argv);
 	if (args.getHelp()) //Help was asked and has been printed, leave.
+	{
 		return (0);
+	}
 
 	if (!args.checkConsistency())
     {
@@ -13,5 +19,26 @@ int main(int argc, char* argv[])
 		args.printHelp();
 		return (1);
     }
+
+	std::cout << args << std::endl;
+
+	//Label definition
+	std::vector <unsigned> alpha;
+	for (unsigned i = 0; i < 1000; i+= 30)
+	{
+		alpha.push_back(i);
+	}
+
+	std::vector<unsigned> gamma;
+    for (unsigned i = 0; i < 10000; i += 100)
+    {
+		gamma.push_back(i);
+    }
+    for (unsigned i = 10000; i < 100000; i += 1000)
+    {
+		gamma.push_back(i);
+    }
+
+	Minimizer minimizer(alpha, gamma, args.getBetaBV(), args.getBetaS());
 	return (0);
 }
