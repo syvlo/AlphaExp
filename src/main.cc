@@ -2,6 +2,7 @@
 #include "Args.hh"
 #include "TVL0DecompositionMinimizer.hh"
 #include "Rayleigh2Vars.hh"
+#include "ImwHelper.hh"
 
 typedef TVL0DecompositionMinimizer<Rayleigh2Vars<unsigned> > Minimizer;
 
@@ -40,5 +41,19 @@ int main(int argc, char* argv[])
     }
 
 	Minimizer minimizer(alpha, gamma, args.getBetaBV(), args.getBetaS());
+
+	cv::Mat input = ReadImw(args.getInputImage());
+
+	if (minimizer.compute(input))
+	{
+		WriteImw(minimizer.getOutputBV(), args.getOutputImageBV());
+		WriteImw(minimizer.getOutputS(), args.getOutputImageS());
+		WriteImw(minimizer.getOutputComplete(), args.getOutputImageComplete());
+	}
+	else
+	{
+	    std::cerr << "Error during computation." << std::endl;
+	    return (1);
+	}
 	return (0);
 }
