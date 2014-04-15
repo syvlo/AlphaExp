@@ -25,12 +25,18 @@ int main(int argc, char* argv[])
 
 	//Label definition
 	std::vector <unsigned> alpha;
-	for (unsigned i = 0; i < 1000; i+= 30)
+	alpha.push_back(1);
+	// for (unsigned i = 2; i < 255; i+= 1)
+	// {
+	// 	alpha.push_back(i);
+	// }
+	for (unsigned i = 30; i < 1000; i+= 30)
 	{
 		alpha.push_back(i);
 	}
 
 	std::vector<unsigned> gamma;
+	// gamma.push_back(1);
     for (unsigned i = 0; i < 10000; i += 100)
     {
 		gamma.push_back(i);

@@ -15,10 +15,10 @@ Rayleigh2Vars<Input>::Compute(const Input& V,
 {
     Input Us = Rayleigh2Vars<Input>::ComputeUs(V, Ubv, gamma, BetaS, BetaBV);
 
-    if (Us == 0)
+    // if (Us == 0)
 		return Rayleigh2Vars<Input>::ComputeDataTermOnly(V, Ubv, Us, BetaBV);
 
-    return BetaS/BetaBV;
+    // return BetaS/BetaBV;
 }
 
 
@@ -43,8 +43,8 @@ Rayleigh2Vars<Input>::ComputeUs(const Input& V,
     double minValue = std::numeric_limits<double>::max();
 
     double tmp = Rayleigh2Vars<Input>::ComputeDataTermOnly(V, Ubv, 0, BetaBV);
-    if (tmp < BetaS / BetaBV)
-		return 0;
+    // if (tmp < BetaS / BetaBV)
+	// 	return 0;
 
     Input min;
     for (typename std::vector<Input>::const_iterator it = gamma.begin();
@@ -60,7 +60,7 @@ Rayleigh2Vars<Input>::ComputeUs(const Input& V,
 		}
     }
 
-    if (minValue + BetaS < ComputeDataTermOnly(V, Ubv, 0, BetaBV))
+    if (minValue + BetaS < tmp)
 		return min;
     else
 		return 0;

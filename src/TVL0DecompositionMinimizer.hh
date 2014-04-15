@@ -50,6 +50,14 @@ public:
      */
     bool compute(const cv::Mat& input);
 
+	/**
+	 * \brief			Compute the energy of one configuration.
+	 * \param			input	The noisy image.
+	 * \param			image	The configuration
+	 * \retrurn			The energy
+	 */
+	double computeEnergy(const cv::Mat& input, const cv::Mat& image);
+
     /**
      * \brief		Setter for BetaBV.
      * \param		BetaBV	New value for BetaBV.
@@ -118,6 +126,15 @@ private:
 
     //Look-up tables must be provided, so we remove default constructor.
     TVL0DecompositionMinimizer();
+
+	/**
+	 * \brief Compute the best solution within one alpha expansion of x.
+	 * \param y			The original image.
+	 * \param x			The current solution.
+	 * \param Alpha		The alpha to be expanded.
+	 * \return The best solution within one alpha expansion of x.
+	 */
+	cv::Mat findBestAExp(const cv::Mat& y, const cv::Mat& x, const unsigned Alpha);
 };
 
 #include "TVL0DecompositionMinimizer.hxx"
