@@ -1,4 +1,4 @@
-LightTVRegRadar
+Alpha expansion
 ===============
 
-Implementation of "A Convex Formulation of Continuous Multi-label Problems" published by Thomas Pock
+Find a TV+L0 Decomposition using Alpha expansion.
